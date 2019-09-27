@@ -1,2 +1,4 @@
 # otus-java-courses
-java courses repo for homework otus
+repository for homeworks in java courses in otus
+2019 year
+tatiana karabut 
