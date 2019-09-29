@@ -12,7 +12,7 @@
     <artifactId>hw01-maven-otus-java-courses</artifactId>
     <name>hw01-maven-otus-java-courses</name>
     <properties>
-        <fully.qualified.class.name>HelloOtus</fully.qualified.class.name>
+        <fully.qualified.class.name>hellootus/HelloOtus</fully.qualified.class.name>
     </properties>
 
     <dependencies>

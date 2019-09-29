@@ -1,3 +1,5 @@
+package hellootus;
+
 import com.google.common.collect.ImmutableList;
 
 public class HelloOtus {
