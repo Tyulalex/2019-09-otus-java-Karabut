@@ -17,7 +17,7 @@ public class DIYArrayList<T> implements List<T> {
     }
 
     public DIYArrayList(T[] t) {
-        this.arr = t;
+        this.arr = Arrays.copyOf(t, t.length);
         this.size = t.length;
     }
 
@@ -60,9 +60,7 @@ public class DIYArrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        if (this.size() == 0) {
-            this.arr = new Object[DEFAULT_CAPACITY];
-        } else if (this.size == this.arr.length) {
+        if (this.size == this.arr.length) {
             this.arr = grow();
         }
         this.arr[this.size] = t;
@@ -71,7 +69,7 @@ public class DIYArrayList<T> implements List<T> {
     }
 
     private Object[] grow() {
-        return Arrays.copyOf(this.arr, this.arr.length * 2);
+        return Arrays.copyOf(this.arr, this.arr.length * 2 + 1);
     }
 
     @Override

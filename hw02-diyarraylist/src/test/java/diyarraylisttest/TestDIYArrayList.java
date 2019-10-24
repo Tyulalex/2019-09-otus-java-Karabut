@@ -92,6 +92,15 @@ public class TestDIYArrayList {
         assertThrows(UnsupportedOperationException.class, list::iterator);
     }
 
+    @Test
+    public void testConstructorWithArray() {
+        String[] array = new String[]{"1", "2"};
+        List diyList = new DIYArrayList<>(array);
+        assertEquals("1", diyList.get(0));
+        array[0] = "3";
+        assertEquals("1", diyList.get(0));
+    }
+
 
     private List<Integer> givenDiyListOfIntegersValues(int startRange, int endRange) {
         List<Integer> src = IntStream.range(startRange, endRange).boxed().collect(Collectors.toList());
