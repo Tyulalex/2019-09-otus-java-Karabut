@@ -9,7 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>hw01-maven-otus-java-courses</module>
+        <module>hw01-maven</module>
+        <module>hw02-diyarraylist</module>
     </modules>
     <name>homeworks</name>
 
@@ -20,6 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <com.google.guava.version>28.1-jre</com.google.guava.version>
+        <org.junit.jupiter.version>5.3.1</org.junit.jupiter.version>
     </properties>
 
     <dependencyManagement>
@@ -29,9 +31,14 @@
                 <artifactId>guava</artifactId>
                 <version>${com.google.guava.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${org.junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 
 </project>
