@@ -1,3 +1,4 @@
 /.idea/
 *.iml
 **/target
+/hw04-automatic-logging/*.class
