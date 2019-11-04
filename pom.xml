@@ -12,6 +12,7 @@
         <module>hw01-maven</module>
         <module>hw02-diyarraylist</module>
         <module>hw05-own-test-framework</module>
+        <module>hw04-automatic-logging</module>
     </modules>
     <name>homeworks</name>
 
@@ -23,8 +24,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <com.google.guava.version>28.1-jre</com.google.guava.version>
         <org.junit.jupiter.version>5.3.1</org.junit.jupiter.version>
-        <org.apache.maven.plugins>2.22.0</org.apache.maven.plugins>
         <commons.cli.version>1.4</commons.cli.version>
+        <org.projectlombok.version>1.18.10</org.projectlombok.version>
+        <org.apache.maven.plugins.version>2.22.0</org.apache.maven.plugins.version>
     </properties>
 
     <dependencyManagement>
@@ -46,7 +48,12 @@
                 <artifactId>commons-cli</artifactId>
                 <version>${commons.cli.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${org.projectlombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -56,7 +63,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${org.apache.maven.plugins}</version>
+                <version>${org.apache.maven.plugins.version}</version>
             </plugin>
         </plugins>
     </build>
