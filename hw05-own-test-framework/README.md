@@ -1,8 +1,11 @@
 # Own test framework
 
 Module implements 3 annotations: Before, After and Test.
-It allows to mark methods with such annotations imitate test method and setup and teardown methods.
-
+It has TestRunner that takes path to class marked with such annotations as argument
+and run all methods marked with annotations in order:
+Before(s), Test , After(s). if any of test method throws exception - test marked as 
+failed. After method always executed.
+Print result of test execution
 
 ## Getting Started
 
@@ -17,6 +20,12 @@ program takes -c <path to class>
 example: 
 ```
 -ea -c own.test.framework.tests.DIYMathTest
+```
+
+output example
+```
+Results:
+ Tests run: 3, Failures: 1, Passed: 2
 ```
 
 ### Testing
