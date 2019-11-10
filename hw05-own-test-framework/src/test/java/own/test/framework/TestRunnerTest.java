@@ -53,8 +53,17 @@ class TestRunnerTest extends BaseTest {
                 "executed before method2\n" +
                 "executed test method4\n" +
                 "executed after method5\n", outContent.toString());
-        System.setOut(originalOut);
-        System.setErr(originalErr);
+    }
+
+    @Test
+    void afterMethodExecutesInCaseOfError() throws Exception {
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        TestRunResult result = TestRunner.runTests(TEST_CLASS_FAILED);
+        assertEquals(1, result.getPassed());
+        assertEquals(1, result.getFailed());
+        assertEquals("afterMethodExecuted\n" +
+                "afterMethodExecuted\n", outContent.toString());
     }
 
     @After

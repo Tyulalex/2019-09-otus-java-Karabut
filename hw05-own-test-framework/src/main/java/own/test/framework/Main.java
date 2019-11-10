@@ -6,7 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            TestRunResult result = TestRunner.runTests(parseArgs(args).getOptionValue("classname"));
+            String testClass = parseArgs(args).getOptionValue("classname");
+            TestRunResult result = TestRunner.runTests(testClass);
             Printer.printTestResults(result);
         } catch (MissingOptionException e) {
             System.out.println(e.getMessage());

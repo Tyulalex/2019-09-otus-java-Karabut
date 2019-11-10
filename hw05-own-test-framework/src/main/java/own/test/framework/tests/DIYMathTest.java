@@ -12,7 +12,7 @@ public class DIYMathTest {
     }
 
     @Test
-    public void testSumSuccess() throws Exception {
+    public void testSumError() throws Exception {
         assert DIYMath.sum(3, 6) == 2;
     }
 

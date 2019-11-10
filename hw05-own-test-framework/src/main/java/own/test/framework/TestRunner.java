@@ -13,8 +13,9 @@ public class TestRunner {
     private static TestRunResult runTests(Class<?> classToRun) {
         Method[] methods = classToRun.getMethods();
         List<Method> testMethods = MethodFilterer.filterTestMethods(methods);
-        return runTestsWithResults(classToRun, testMethods,
-                MethodFilterer.filterBeforeMethods(methods), MethodFilterer.filterAfterMethods(methods));
+        List<Method> beforeMethods = MethodFilterer.filterBeforeMethods(methods);
+        List<Method> afterMethods = MethodFilterer.filterAfterMethods(methods);
+        return runTestsWithResults(classToRun, testMethods, beforeMethods, afterMethods);
     }
 
     private static TestRunResult runTestsWithResults(Class<?> classToRun, List<Method> testMethods,
@@ -27,7 +28,7 @@ public class TestRunner {
                 passed += 1;
             } catch (Exception e) {
                 failed += 1;
-                e.printStackTrace();
+                e.getCause();
             }
         }
         return new TestRunResult(passed, failed);
@@ -39,9 +40,12 @@ public class TestRunner {
         for (Method beforeMethod : beforeMethods) {
             beforeMethod.invoke(testClassObj);
         }
-        testMethod.invoke(testClassObj);
-        for (Method afterMethod : afterMethods) {
-            afterMethod.invoke(testClassObj);
+        try {
+            testMethod.invoke(testClassObj);
+        } finally {
+            for (Method afterMethod : afterMethods) {
+                afterMethod.invoke(testClassObj);
+            }
         }
     }
 }
