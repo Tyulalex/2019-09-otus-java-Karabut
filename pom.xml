@@ -13,6 +13,7 @@
         <module>hw02-diyarraylist</module>
         <module>hw05-own-test-framework</module>
         <module>hw04-automatic-logging</module>
+        <module>hw06-atm-emulator</module>
     </modules>
     <name>homeworks</name>
 
@@ -53,6 +54,11 @@
                 <artifactId>lombok</artifactId>
                 <version>${org.projectlombok.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
