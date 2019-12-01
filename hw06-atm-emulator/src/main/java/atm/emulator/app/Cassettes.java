@@ -1,6 +1,6 @@
 package atm.emulator.app;
 
-public interface Cassettes<T extends Cassette> {
+public interface Cassettes {
 
     int getTotalSumOfMoney();
 
