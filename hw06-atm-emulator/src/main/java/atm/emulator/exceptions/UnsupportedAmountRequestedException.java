@@ -1,6 +1,6 @@
 package atm.emulator.exceptions;
 
-public class UnsupportedAmountRequestedException extends AtmOperationException {
+final public class UnsupportedAmountRequestedException extends AtmOperationException {
 
     private static final String MESSAGE_TEMPLATE = "Entered amount is incorrect, it should be multiple to %d";
 

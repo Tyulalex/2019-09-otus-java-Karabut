@@ -1,6 +1,6 @@
 package atm.emulator.exceptions;
 
-public class OutOfMoneyException extends AtmOperationException {
+final public class OutOfMoneyException extends AtmOperationException {
 
     private static final String MESSAGE_TEMPLATE = "Not enough money to proceed with operation";
 

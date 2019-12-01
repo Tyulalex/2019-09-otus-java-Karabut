@@ -1,6 +1,6 @@
 package atm.emulator.exceptions;
 
-public class ExceedMaxSumPerOperationException extends AtmOperationException {
+final public class ExceedMaxSumPerOperationException extends AtmOperationException {
 
     private static final String MESSAGE_TEMPLATE = "Requested amount shall not exceed limit in %d per one operation";
 

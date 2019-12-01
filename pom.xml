@@ -28,6 +28,9 @@
         <commons.cli.version>1.4</commons.cli.version>
         <org.projectlombok.version>1.18.10</org.projectlombok.version>
         <org.apache.maven.plugins.version>2.22.0</org.apache.maven.plugins.version>
+        <org.mockito.version>1.9.5</org.mockito.version>
+        <org.slf4j.version>1.7.29</org.slf4j.version>
+        <org.apache.logging.log4j.version>2.12.1</org.apache.logging.log4j.version>
     </properties>
 
     <dependencyManagement>
@@ -55,11 +58,41 @@
                 <version>${org.projectlombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j -->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.logging.log4j</groupId>-->
+            <!--                <artifactId>log4j</artifactId>-->
+            <!--                <version>${org.apache.logging.log4j.version}</version>-->
+            <!--            </dependency>-->
+
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${org.apache.logging.log4j.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${org.apache.logging.log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${org.mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -2,9 +2,9 @@ package atm.emulator.exceptions;
 
 import atm.emulator.app.Nominal;
 
-public class OutOfBanknoteException extends AtmOperationException {
+final public class OutOfBanknoteException extends AtmOperationException {
 
-    private static String MESSAGE_TEMPLATE = "Not enough banknote of nominal %d";
+    private static final String MESSAGE_TEMPLATE = "Not enough banknote of nominal %d";
 
     public OutOfBanknoteException(Nominal nominal) {
         super(String.format(MESSAGE_TEMPLATE, nominal.getValue()));
