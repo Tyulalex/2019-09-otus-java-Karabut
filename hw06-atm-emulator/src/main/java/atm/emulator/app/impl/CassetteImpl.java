@@ -7,7 +7,7 @@ import atm.emulator.exceptions.OutOfBanknoteException;
 
 import java.util.Objects;
 
-final public class CassetteImpl implements Cassette, Comparable<Cassette> {
+final public class CassetteImpl implements Cassette {
 
     private final Nominal nominal;
     private final CassetteConfiguration configuration;

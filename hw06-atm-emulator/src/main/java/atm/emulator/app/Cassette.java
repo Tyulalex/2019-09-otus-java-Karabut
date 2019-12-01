@@ -1,6 +1,6 @@
 package atm.emulator.app;
 
-public interface Cassette {
+public interface Cassette extends Comparable<Cassette> {
 
     void withdraw(int quantity);
 
@@ -13,7 +13,5 @@ public interface Cassette {
     void setQuantity(int quantity);
 
     int getAmount();
-
-    int compareTo(Cassette cassette);
 
 }
