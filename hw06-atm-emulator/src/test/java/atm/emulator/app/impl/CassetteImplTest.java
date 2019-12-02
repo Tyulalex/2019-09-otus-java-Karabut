@@ -35,14 +35,14 @@ class CassetteImplTest extends BaseTest {
 
     @Test
     void calculateActualBankNoteQuantityPerRequestedSumOfMoneyWhenEnoughBankNotes() {
-        Cassette cassette = cassetteWithNominalAndCapacity(Nominal.N50, 10); //500
+        Cassette cassette = cassetteWithNominalAndCapacity(Nominal.N50, 10);
         int bankNotesQuantity = cassette.calculateActualBankNoteQuantityPerRequestedSumOfMoney(100);
         assertEquals(2, bankNotesQuantity);
     }
 
     @Test
     void calculateActualBankNoteQuantityPerRequestedSumOfMoneyWhenNotEnoughBankNotes() {
-        Cassette cassette = cassetteWithNominalAndCapacity(Nominal.N50, 3); //500
+        Cassette cassette = cassetteWithNominalAndCapacity(Nominal.N50, 3);
         int bankNotesQuantity = cassette.calculateActualBankNoteQuantityPerRequestedSumOfMoney(200);
         assertEquals(3, bankNotesQuantity);
     }
