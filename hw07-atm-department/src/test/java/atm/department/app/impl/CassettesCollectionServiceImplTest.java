@@ -1,6 +1,6 @@
 package atm.department.app.impl;
 
-import atm.department.app.CassettesService;
+import atm.department.app.CassettesCollectionService;
 import atm.department.app.Nominal;
 import atm.department.configuration.CassetteConfiguration;
 import atm.department.exceptions.OutOfBanknoteException;
@@ -19,7 +19,7 @@ class CassettesCollectionServiceImplTest extends BaseTest {
     void performWithdrawTheEldestNominalFirst() throws Exception {
         CassettesCollection cassettesCollection = cassettesWithMaxCapacityMock(10);
         int initialSumOfMoney = cassettesCollection.getAmountOfMoney();
-        CassettesService service = new CassettesServiceImpl(cassettesCollection);
+        CassettesCollectionService service = new CassettesCollectionServiceImpl(cassettesCollection);
         service.withdrawMoney(5000);
 
         assertEquals(9, cassettesCollection.getCassetteByNominal(Nominal.N5000).getQuantity());
@@ -31,7 +31,7 @@ class CassettesCollectionServiceImplTest extends BaseTest {
         CassettesCollection cassettesCollection = cassettesWithMaxCapacityMock(10);
         cassettesCollection.getCassetteByNominal(Nominal.N5000).setQuantity(0);
         int initialSumOfMoney = cassettesCollection.getAmountOfMoney();
-        CassettesService service = new CassettesServiceImpl(cassettesCollection);
+        CassettesCollectionService service = new CassettesCollectionServiceImpl(cassettesCollection);
 
         service.withdrawMoney(5250);
 
@@ -51,7 +51,7 @@ class CassettesCollectionServiceImplTest extends BaseTest {
 
         int sumOfMoneyToWithdraw = 30000;
 
-        CassettesService service = new CassettesServiceImpl(cassettesCollection);
+        CassettesCollectionService service = new CassettesCollectionServiceImpl(cassettesCollection);
 
         service.withdrawMoney(sumOfMoneyToWithdraw);
 
@@ -65,7 +65,7 @@ class CassettesCollectionServiceImplTest extends BaseTest {
     public void testOutOfBanknoteException() {
         CassettesCollection cassettesCollection = cassettesWithNominalAndMaxCapacityMock(
                 new Nominal[]{Nominal.N1000}, new int[]{100});
-        CassettesService service = new CassettesServiceImpl(cassettesCollection);
+        CassettesCollectionService service = new CassettesCollectionServiceImpl(cassettesCollection);
 
         assertThrows(OutOfBanknoteException.class, () -> service.withdrawMoney(900));
     }

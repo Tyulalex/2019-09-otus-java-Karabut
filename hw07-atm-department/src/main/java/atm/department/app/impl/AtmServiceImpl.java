@@ -1,7 +1,7 @@
 package atm.department.app.impl;
 
 import atm.department.app.AtmService;
-import atm.department.app.CassettesService;
+import atm.department.app.CassettesCollectionService;
 import atm.department.exceptions.AtmOperationException;
 import atm.department.exceptions.ExceedMaxSumPerOperationException;
 import atm.department.exceptions.OutOfMoneyException;
@@ -17,22 +17,22 @@ import lombok.extern.slf4j.Slf4j;
 public class AtmServiceImpl implements AtmService {
 
     private Atm atm;
-    private CassettesService cassettesService;
+    private CassettesCollectionService cassettesCollectionService;
 
     public AtmServiceImpl(Atm atm) {
-        this(atm, new CassettesServiceImpl(atm.getCassettesCollection()));
+        this(atm, new CassettesCollectionServiceImpl(atm.getCassettesCollection()));
     }
 
-    public AtmServiceImpl(Atm atm, CassettesService cassettesService) {
+    public AtmServiceImpl(Atm atm, CassettesCollectionService cassettesCollectionService) {
         this.atm = atm;
-        this.cassettesService = cassettesService;
+        this.cassettesCollectionService = cassettesCollectionService;
     }
 
     public void withdrawMoney(int sumOfMoney) throws AtmOperationException {
         log.debug("Total sum of money before withdraw:" + this.atm.getAmountOfMoney());
         log.debug(String.format("Withdraw %d", sumOfMoney));
         checkSumOfMoneyCanBeGiven(sumOfMoney);
-        this.cassettesService.withdrawMoney(sumOfMoney);
+        this.cassettesCollectionService.withdrawMoney(sumOfMoney);
         log.debug("Total sum of money after withdraw:" + this.atm.getAmountOfMoney());
     }
 

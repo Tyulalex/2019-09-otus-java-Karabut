@@ -2,7 +2,7 @@ package atm.department.app;
 
 import atm.department.exceptions.AtmOperationException;
 
-public interface CassettesService {
+public interface CassettesCollectionService {
 
     void withdrawMoney(int requestedSumOfMoney) throws AtmOperationException;
 }

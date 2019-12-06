@@ -1,7 +1,7 @@
 package atm.department.app.impl;
 
 import atm.department.app.CassetteService;
-import atm.department.app.CassettesService;
+import atm.department.app.CassettesCollectionService;
 import atm.department.app.Nominal;
 import atm.department.exceptions.AtmOperationException;
 import atm.department.exceptions.OutOfBanknoteException;
@@ -12,11 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.EnumMap;
 
 @Slf4j
-public class CassettesServiceImpl implements CassettesService {
+public class CassettesCollectionServiceImpl implements CassettesCollectionService {
 
     private final CassettesCollection cassettesCollection;
 
-    public CassettesServiceImpl(CassettesCollection cassettesCollection) {
+    public CassettesCollectionServiceImpl(CassettesCollection cassettesCollection) {
         this.cassettesCollection = cassettesCollection;
     }
 

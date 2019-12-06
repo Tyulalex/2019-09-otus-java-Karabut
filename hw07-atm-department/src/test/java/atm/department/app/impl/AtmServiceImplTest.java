@@ -1,7 +1,7 @@
 package atm.department.app.impl;
 
 import atm.department.app.AtmService;
-import atm.department.app.CassettesService;
+import atm.department.app.CassettesCollectionService;
 import atm.department.exceptions.AtmOperationException;
 import atm.department.exceptions.ExceedMaxSumPerOperationException;
 import atm.department.exceptions.OutOfMoneyException;
@@ -24,11 +24,11 @@ class AtmServiceImplTest extends BaseTest {
         Mockito.when(atm.getMultiplicityParameter()).thenReturn(50);
         Mockito.when(atm.getMaxSumPerOperation()).thenReturn(MAX_SUM_PER_OPERATION);
         Mockito.when(atm.getAmountOfMoney()).thenReturn(2000000);
-        CassettesService cassettesService = Mockito.spy(new CassettesServiceImpl(cassettes));
-        Mockito.doNothing().when(cassettesService).withdrawMoney(anyInt());
-        AtmService atmService = new AtmServiceImpl(atm, cassettesService);
+        CassettesCollectionService cassettesCollectionService = Mockito.spy(new CassettesCollectionServiceImpl(cassettes));
+        Mockito.doNothing().when(cassettesCollectionService).withdrawMoney(anyInt());
+        AtmService atmService = new AtmServiceImpl(atm, cassettesCollectionService);
         atmService.withdrawMoney(5000);
-        Mockito.verify(cassettesService, Mockito.times(1)).withdrawMoney(5000);
+        Mockito.verify(cassettesCollectionService, Mockito.times(1)).withdrawMoney(5000);
     }
 
     @Test
@@ -38,13 +38,13 @@ class AtmServiceImplTest extends BaseTest {
         Mockito.when(atm.getMultiplicityParameter()).thenReturn(50);
         Mockito.when(atm.getMaxSumPerOperation()).thenReturn(MAX_SUM_PER_OPERATION);
         Mockito.when(atm.getAmountOfMoney()).thenReturn(2000000);
-        CassettesService cassettesService = Mockito.spy(new CassettesServiceImpl(cassettes));
-        AtmService atmService = new AtmServiceImpl(atm, cassettesService);
+        CassettesCollectionService cassettesCollectionService = Mockito.spy(new CassettesCollectionServiceImpl(cassettes));
+        AtmService atmService = new AtmServiceImpl(atm, cassettesCollectionService);
 
         assertThrows(ExceedMaxSumPerOperationException.class,
                 () -> atmService.withdrawMoney(MAX_SUM_PER_OPERATION + 100));
 
-        Mockito.verify(cassettesService, Mockito.times(0)).withdrawMoney(anyInt());
+        Mockito.verify(cassettesCollectionService, Mockito.times(0)).withdrawMoney(anyInt());
     }
 
     @Test
@@ -54,11 +54,11 @@ class AtmServiceImplTest extends BaseTest {
         Mockito.when(atm.getMultiplicityParameter()).thenReturn(50);
         Mockito.when(atm.getMaxSumPerOperation()).thenReturn(MAX_SUM_PER_OPERATION);
         Mockito.when(atm.getAmountOfMoney()).thenReturn(200000);
-        CassettesService cassettesService = Mockito.spy(new CassettesServiceImpl(cassettes));
-        AtmService atmService = new AtmServiceImpl(atm, cassettesService);
+        CassettesCollectionService cassettesCollectionService = Mockito.spy(new CassettesCollectionServiceImpl(cassettes));
+        AtmService atmService = new AtmServiceImpl(atm, cassettesCollectionService);
         assertThrows(UnsupportedAmountRequestedException.class,
                 () -> atmService.withdrawMoney(2345));
-        Mockito.verify(cassettesService, Mockito.times(0)).withdrawMoney(anyInt());
+        Mockito.verify(cassettesCollectionService, Mockito.times(0)).withdrawMoney(anyInt());
     }
 
     @Test
@@ -68,10 +68,10 @@ class AtmServiceImplTest extends BaseTest {
         Mockito.when(atm.getMultiplicityParameter()).thenReturn(50);
         Mockito.when(atm.getMaxSumPerOperation()).thenReturn(MAX_SUM_PER_OPERATION);
         Mockito.when(atm.getAmountOfMoney()).thenReturn(10000);
-        CassettesService cassettesService = Mockito.spy(new CassettesServiceImpl(cassettes));
-        AtmService atmService = new AtmServiceImpl(atm, cassettesService);
+        CassettesCollectionService cassettesCollectionService = Mockito.spy(new CassettesCollectionServiceImpl(cassettes));
+        AtmService atmService = new AtmServiceImpl(atm, cassettesCollectionService);
 
         assertThrows(OutOfMoneyException.class, () -> atmService.withdrawMoney(15000));
-        Mockito.verify(cassettesService, Mockito.times(0)).withdrawMoney(anyInt());
+        Mockito.verify(cassettesCollectionService, Mockito.times(0)).withdrawMoney(anyInt());
     }
 }
