@@ -1,6 +1,6 @@
 package atm.department.exceptions;
 
-public class AtmOperationException extends RuntimeException {
+public class AtmOperationException extends Exception {
 
     public AtmOperationException(String message) {
         super(message);
