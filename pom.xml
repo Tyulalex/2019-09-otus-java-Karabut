@@ -14,6 +14,7 @@
         <module>hw05-own-test-framework</module>
         <module>hw04-automatic-logging</module>
         <module>hw06-atm-emulator</module>
+        <module>hw07-atm-department</module>
     </modules>
     <name>homeworks</name>
 
