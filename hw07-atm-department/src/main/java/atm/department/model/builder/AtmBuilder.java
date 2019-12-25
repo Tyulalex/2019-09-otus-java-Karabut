@@ -26,7 +26,7 @@ public class AtmBuilder extends AbstractAtmBuilder {
             cassetteConfigurationList.add(
                     CassetteConfigurationFactory.getCassetteConfiguration(casseteSet.getKey(), casseteSet.getValue()));
         }
-        this.cassettesCollection = (new CassettesCollection(cassetteConfigurationList));
+        this.cassettesCollection = new CassettesCollection(cassetteConfigurationList);
 
         return this;
     }

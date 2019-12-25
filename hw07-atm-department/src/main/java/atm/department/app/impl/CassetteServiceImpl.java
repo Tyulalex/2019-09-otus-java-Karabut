@@ -38,7 +38,7 @@ final public class CassetteServiceImpl implements CassetteService {
     }
 
     private boolean hasAtLeastOneNoteForRequestedSum(int sumOfMoney) {
-        return (getBankNoteQuantityForRequestedSum(sumOfMoney) > 0) && !this.cassette.isEmpty();
+        return getBankNoteQuantityForRequestedSum(sumOfMoney) > 0 && !this.cassette.isEmpty();
     }
 
     private int getBankNoteQuantityForRequestedSum(int sumOfMoney) {

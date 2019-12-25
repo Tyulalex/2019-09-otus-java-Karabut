@@ -6,8 +6,6 @@ public class DIYArrayList<T> implements List<T> {
 
     private final static Object[] DEFAULT_INITIAL_ARRAY = {};
 
-    private int DEFAULT_CAPACITY = 10;
-
     private int size;
 
     private Object[] arr;
@@ -205,7 +203,7 @@ public class DIYArrayList<T> implements List<T> {
 
 
         public boolean hasNext() {
-            return (cursor < size);
+            return cursor < size;
         }
 
         public T next() {

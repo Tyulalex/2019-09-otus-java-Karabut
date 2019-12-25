@@ -1,0 +1,61 @@
+{
+  "classPrimitiveDataArray": [
+    {
+      "intField": 1,
+      "stringField": "Text",
+      "booleanField": true,
+      "doubleField": 4.5,
+      "floatField": 5.6,
+      "charField": "e",
+      "longField": 123,
+      "byteField": 1,
+      "shortField": 23
+    },
+    {
+      "intField": 1,
+      "stringField": "Text",
+      "booleanField": true,
+      "doubleField": 4.5,
+      "floatField": 5.6,
+      "charField": "e",
+      "longField": 123,
+      "byteField": 1,
+      "shortField": 23
+    },
+    {
+      "intField": 1,
+      "stringField": "Text",
+      "booleanField": true,
+      "doubleField": 4.5,
+      "floatField": 5.6,
+      "charField": "e",
+      "longField": 123,
+      "byteField": 1,
+      "shortField": 23
+    }
+  ],
+  "classPrimitiveDataList": [
+    {
+      "intField": 1,
+      "stringField": "Text",
+      "booleanField": true,
+      "doubleField": 4.5,
+      "floatField": 5.6,
+      "charField": "e",
+      "longField": 123,
+      "byteField": 1,
+      "shortField": 23
+    },
+    {
+      "intField": 1,
+      "stringField": "Text",
+      "booleanField": true,
+      "doubleField": 4.5,
+      "floatField": 5.6,
+      "charField": "e",
+      "longField": 123,
+      "byteField": 1,
+      "shortField": 23
+    }
+  ]
+}

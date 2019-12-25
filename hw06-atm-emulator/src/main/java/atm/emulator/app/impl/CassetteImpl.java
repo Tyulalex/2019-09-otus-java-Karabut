@@ -83,7 +83,7 @@ final public class CassetteImpl implements Cassette {
     }
 
     private boolean hasAtLeastOneNoteForRequestedSum(int sumOfMoney) {
-        return (getBankNoteQuantityForRequestedSum(sumOfMoney) > 0) && !this.isEmpty();
+        return getBankNoteQuantityForRequestedSum(sumOfMoney) > 0 && !this.isEmpty();
     }
 
     private int getBankNoteQuantityForRequestedSum(int sumOfMoney) {
