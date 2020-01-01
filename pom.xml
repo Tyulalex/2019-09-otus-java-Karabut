@@ -16,6 +16,7 @@
         <module>hw06-atm-emulator</module>
         <module>hw07-atm-department</module>
         <module>hw08-json-object-writer</module>
+        <module>hw09-diy-orm</module>
     </modules>
     <name>homeworks</name>
 
@@ -38,6 +39,9 @@
         <maven-pmd-plugin.version>3.12.0</maven-pmd-plugin.version>
         <javax.json-api.version>1.1.4</javax.json-api.version>
         <javax.json.version>1.1.4</javax.json.version>
+        <h2.database.version>1.4.197</h2.database.version>
+        <logback.version>1.2.3</logback.version>
+        <apache.commons.version>3.9</apache.commons.version>
     </properties>
 
     <dependencyManagement>
@@ -47,6 +51,13 @@
                 <artifactId>guava</artifactId>
                 <version>${com.google.guava.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
@@ -119,6 +130,16 @@
                 <artifactId>javax.json</artifactId>
                 <version>${javax.json.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.database.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -131,23 +152,23 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${org.apache.maven.plugins.version}</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>${maven-pmd-plugin.version}</version>
-                <configuration>
-                    <targetJdk>${maven.compiler.target}</targetJdk>
-                    <verbose>true</verbose>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!-- <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-pmd-plugin</artifactId>
+                 <version>${maven-pmd-plugin.version}</version>
+                 <configuration>
+                     <targetJdk>${maven.compiler.target}</targetJdk>
+                     <verbose>true</verbose>
+                 </configuration>
+                 <executions>
+                     <execution>
+                         <phase>package</phase>
+                         <goals>
+                             <goal>check</goal>
+                         </goals>
+                     </execution>
+                 </executions>
+             </plugin>-->
         </plugins>
     </build>
 
