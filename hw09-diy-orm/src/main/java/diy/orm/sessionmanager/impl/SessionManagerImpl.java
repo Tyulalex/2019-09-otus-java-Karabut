@@ -31,8 +31,6 @@ public class SessionManagerImpl implements SessionManager {
         } catch (SQLException ex) {
             throw new SessionManagerException(ex);
         }
-
-
     }
 
     @Override
@@ -43,8 +41,6 @@ public class SessionManagerImpl implements SessionManager {
         } catch (SQLException ex) {
             throw new SessionManagerException(ex);
         }
-
-
     }
 
     @Override
@@ -55,7 +51,6 @@ public class SessionManagerImpl implements SessionManager {
         } catch (SQLException ex) {
             throw new SessionManagerException(ex);
         }
-
     }
 
     @Override
@@ -66,7 +61,6 @@ public class SessionManagerImpl implements SessionManager {
         } catch (SQLException ex) {
             throw new SessionManagerException(ex);
         }
-
     }
 
     @Override
