@@ -1,15 +1,15 @@
 package hibernate.api.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "phones")
@@ -22,4 +22,26 @@ public class Phone {
 
     @Column(name = "number")
     private String number;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    public Phone(String number) {
+        this.number = number;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Phone phone = (Phone) object;
+        return id == phone.id &&
+                number.equals(phone.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, number);
+    }
 }

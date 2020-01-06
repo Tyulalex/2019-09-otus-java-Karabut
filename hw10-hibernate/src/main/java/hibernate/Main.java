@@ -12,7 +12,6 @@ import hibernate.hibernateimpl.sessionmanager.SessionManagerHibernate;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -26,9 +25,10 @@ public class Main {
         UserDao userDao = new UserDaoHibernate(sessionManager);
         DbServiceUser dbServiceUser = new DbServiceUserImpl(userDao);
 
-        Phone phone = new Phone(0, "+7(123) 123-12-12");
+        Phone phone = new Phone("+7(123) 123-12-12");
         Address address = new Address();
-        User user = new User(0, "Vasya", 12, address, List.of(phone));
+        User user = new User("Vasya", 12, address);
+        user.addPhone(phone);
         address.setId(0);
         address.setStreet("Vavilova street 12-34");
 
