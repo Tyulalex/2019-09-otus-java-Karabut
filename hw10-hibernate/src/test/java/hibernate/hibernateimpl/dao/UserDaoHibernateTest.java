@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,11 +38,8 @@ class UserDaoHibernateTest {
     @DisplayName("UserDao should save User and its property Address and Phone")
     @Test
     void shouldSaveUser() {
-        Address address = new Address(0, "street name");
-        Phone phone = Phone.builder().number("3434343").build();
-        Phone phone1 = Phone.builder().number("132wde3").build();
-        User expectedUser = new User(0, "John", 12, address, List.of(phone, phone1));
 
+        User expectedUser = buildDefaultUser();
         sessionManagerHibernate.beginSession();
         long id = userDaoHibernate.saveUser(expectedUser);
         sessionManagerHibernate.commitSession();
@@ -76,10 +72,7 @@ class UserDaoHibernateTest {
     @DisplayName("UserDao should load User with addresses and phones")
     @Test
     void loadUser() {
-        Address address = new Address(0, "street name");
-        Phone phone = Phone.builder().number("3434343").build();
-        Phone phone1 = Phone.builder().number("132wde3").build();
-        User expectedUser = new User(0, "John", 12, address, List.of(phone, phone1));
+        User expectedUser = buildDefaultUser();
 
         saveUser(expectedUser);
 
@@ -120,6 +113,16 @@ class UserDaoHibernateTest {
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();
+    }
+
+    private User buildDefaultUser() {
+        Address address = new Address(0, "street name");
+        Phone phone = Phone.builder().number("3434343").build();
+        Phone phone1 = Phone.builder().number("132wde3").build();
+        User expectedUser = new User("John", 12, address);
+        expectedUser.addPhone(phone);
+        expectedUser.addPhone(phone1);
+        return expectedUser;
     }
 
 }
