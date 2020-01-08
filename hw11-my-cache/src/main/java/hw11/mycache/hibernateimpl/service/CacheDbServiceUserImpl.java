@@ -11,7 +11,7 @@ import java.util.Optional;
 public class CacheDbServiceUserImpl implements DbServiceUser {
 
     private DbServiceUser dbServiceUser;
-    private HwCache<Long, Optional<User>> userCache;
+    private HwCache<String, User> userCache;
 
     public CacheDbServiceUserImpl(DbServiceUser dbServiceUser, HwCache cache) {
         this.dbServiceUser = dbServiceUser;
@@ -21,17 +21,20 @@ public class CacheDbServiceUserImpl implements DbServiceUser {
     @Override
     public long saveUser(User user) {
         long id = this.dbServiceUser.saveUser(user);
-        this.userCache.put(id, Optional.of(user));
+        this.userCache.put(String.valueOf(id), user);
+
         return id;
     }
 
     @Override
     public Optional<User> getUser(long id) {
-        Optional<User> mayBeUser = this.userCache.get(id);
-        if (mayBeUser.isEmpty()) {
+        User userFromCache = this.userCache.get(String.valueOf(id));
+        if (userFromCache == null) {
             log.debug("Cache is empty, getting user from database");
+
             return this.dbServiceUser.getUser(id);
         }
-        return mayBeUser;
+
+        return Optional.of(userFromCache);
     }
 }

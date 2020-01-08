@@ -47,6 +47,7 @@
         <hibernate-core.version>5.4.4.Final</hibernate-core.version>
         <assertj-core.version>3.13.2</assertj-core.version>
         <mockito-core.version>2.28.2</mockito-core.version>
+        <jmh.version>1.21</jmh.version>
     </properties>
 
     <dependencyManagement>
@@ -155,6 +156,16 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${jmh.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>${jmh.version}</version>
             </dependency>
 
         </dependencies>

@@ -2,12 +2,11 @@ package hw11.mycache.cache;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.WeakHashMap;
 
 public class MyCache<K, V> implements HwCache<K, V> {
 
-    private Map<K, V> store;
+    private WeakHashMap<K, V> store;
     private List<HwListener> listeners;
 
     public MyCache() {
