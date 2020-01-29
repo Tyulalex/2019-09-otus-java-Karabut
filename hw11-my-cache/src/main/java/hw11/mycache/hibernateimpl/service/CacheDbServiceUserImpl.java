@@ -13,7 +13,7 @@ public class CacheDbServiceUserImpl implements DbServiceUser {
     private DbServiceUser dbServiceUser;
     private HwCache<String, User> userCache;
 
-    public CacheDbServiceUserImpl(DbServiceUser dbServiceUser, HwCache cache) {
+    public CacheDbServiceUserImpl(DbServiceUser dbServiceUser, HwCache<String, User> cache) {
         this.dbServiceUser = dbServiceUser;
         this.userCache = cache;
     }
@@ -31,7 +31,8 @@ public class CacheDbServiceUserImpl implements DbServiceUser {
         User userFromCache = this.userCache.get(String.valueOf(id));
         if (userFromCache == null) {
             log.debug("Cache is empty, getting user from database");
-
+            Optional<User> optionalUser = this.dbServiceUser.getUser(id);
+            optionalUser.ifPresent(user -> this.userCache.put(String.valueOf(id), user));
             return this.dbServiceUser.getUser(id);
         }
 

@@ -7,7 +7,7 @@ import java.util.WeakHashMap;
 public class MyCache<K, V> implements HwCache<K, V> {
 
     private WeakHashMap<K, V> store;
-    private List<HwListener> listeners;
+    private List<HwListener<K, V>> listeners;
 
     public MyCache() {
         this.store = new WeakHashMap<>();
