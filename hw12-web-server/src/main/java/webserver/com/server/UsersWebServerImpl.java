@@ -3,7 +3,7 @@ package webserver.com.server;
 import com.google.gson.Gson;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -22,7 +22,6 @@ import java.util.stream.IntStream;
 public class UsersWebServerImpl implements UsersWebServer {
 
     private static final String COMMON_RESOURCES_DIR = "static";
-    private static final String START_PAGE_NAME = "index.html";
     private final int port;
     private final UserService userService;
     private final Server server;
@@ -59,16 +58,7 @@ public class UsersWebServerImpl implements UsersWebServer {
 
     private Server initContext() {
         HandlerList handlers = new HandlerList();
-        ResourceHandler resourceHandler = createResourceHandler();
-        handlers.addHandler(resourceHandler);
-        ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        servletContextHandler.addServlet(
-                new ServletHolder(new UsersApiServlet(userService, gson)), UsersApiServlet.GET_USERS_PATH);
-        servletContextHandler.addServlet(
-                new ServletHolder(new UserApiServlet(userService, gson)), UserApiServlet.GET_USER_PATH);
-
-        servletContextHandler.addServlet(
-                new ServletHolder(new UsersListServlet(templateProcessor)), UsersListServlet.PATH);
+        ServletContextHandler servletContextHandler = createServletContextHandler();
         handlers.addHandler(servletContextHandler);
         handlers.addHandler(applyFilterBasedSecurity(servletContextHandler,
                 UsersApiServlet.GET_USERS_PATH,
@@ -80,12 +70,27 @@ public class UsersWebServerImpl implements UsersWebServer {
         return server;
     }
 
-    private ResourceHandler createResourceHandler() {
-        ResourceHandler resourceHandler = new ResourceHandler();
-        resourceHandler.setDirectoriesListed(false);
-        resourceHandler.setWelcomeFiles(new String[]{START_PAGE_NAME});
-        resourceHandler.setResourceBase(FileSystemHelper.localFileNameOrResourceNameToFullPath(COMMON_RESOURCES_DIR));
-        return resourceHandler;
+    private ServletContextHandler createServletContextHandler() {
+        ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        servletContextHandler.setWelcomeFiles(new String[]{"users"});
+        servletContextHandler.addServlet(defaultServlet(), "/");
+        servletContextHandler.addServlet(
+                new ServletHolder(new UsersApiServlet(userService, gson)), UsersApiServlet.GET_USERS_PATH);
+        servletContextHandler.addServlet(
+                new ServletHolder(new UserApiServlet(userService, gson)), UserApiServlet.GET_USER_PATH);
+
+        servletContextHandler.addServlet(
+                new ServletHolder(new UsersListServlet(templateProcessor)), UsersListServlet.PATH);
+        return servletContextHandler;
+    }
+
+    private ServletHolder defaultServlet() {
+        ServletHolder holderDefault = new ServletHolder("default", DefaultServlet.class);
+        holderDefault.setInitParameter("resourceBase", FileSystemHelper.localFileNameOrResourceNameToFullPath(COMMON_RESOURCES_DIR));
+        holderDefault.setInitParameter("dirAllowed", "true");
+        holderDefault.setInitParameter("welcomeServlets", "true");
+        holderDefault.setInitParameter("redirectWelcome", "true");
+        return holderDefault;
     }
 
     private ServletContextHandler applyFilterBasedSecurity(ServletContextHandler servletContextHandler, String... paths) {

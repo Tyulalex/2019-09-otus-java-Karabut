@@ -27,7 +27,6 @@ public class AuthorizationFilter implements Filter {
 
         if (session == null) {
             httpServletResponse.sendRedirect("/login");
-            // httpServletResponse.sendError(403, "Forbidden");
         } else {
             chain.doFilter(request, response);
         }
