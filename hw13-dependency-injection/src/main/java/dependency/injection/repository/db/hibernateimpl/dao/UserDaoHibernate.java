@@ -9,11 +9,13 @@ import dependency.injection.repository.db.hibernateimpl.sessionmanager.DatabaseS
 import dependency.injection.repository.db.hibernateimpl.sessionmanager.SessionManagerHibernate;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
+@Component
 public class UserDaoHibernate implements UserDao {
 
     private final SessionManagerHibernate sessionManager;

@@ -1,6 +1,5 @@
-package dependency.injection;
+package dependency.injection.config;
 
-import dependency.injection.converter.UserConverter;
 import dependency.injection.repository.cache.HwCache;
 import dependency.injection.repository.cache.HwListener;
 import dependency.injection.repository.cache.impl.CacheImpl;
@@ -9,12 +8,8 @@ import dependency.injection.repository.db.api.model.Address;
 import dependency.injection.repository.db.api.model.Phone;
 import dependency.injection.repository.db.api.model.User;
 import dependency.injection.repository.db.api.service.DbServiceUser;
-import dependency.injection.repository.db.hibernateimpl.dao.UserDaoHibernate;
 import dependency.injection.repository.db.hibernateimpl.service.CacheDbServiceUserImpl;
 import dependency.injection.repository.db.hibernateimpl.service.DbServiceUserImpl;
-import dependency.injection.repository.db.hibernateimpl.sessionmanager.SessionManagerHibernate;
-import dependency.injection.services.UserService;
-import dependency.injection.services.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -37,7 +32,7 @@ import java.util.Arrays;
 
 @Slf4j
 @org.springframework.context.annotation.Configuration
-@ComponentScan
+@ComponentScan(basePackages = "dependency.injection")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
@@ -50,16 +45,6 @@ public class WebConfig implements WebMvcConfigurer {
     private static StandardServiceRegistry createServiceRegistry(org.hibernate.cfg.Configuration configuration) {
         return new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
-    }
-
-    @Bean
-    public UserDao userDao(SessionManagerHibernate sessionManager) {
-        return new UserDaoHibernate(sessionManager);
-    }
-
-    @Bean
-    public SessionManagerHibernate sessionManager(SessionFactory sessionFactory) {
-        return new SessionManagerHibernate(sessionFactory);
     }
 
     @Bean
@@ -86,11 +71,6 @@ public class WebConfig implements WebMvcConfigurer {
         Metadata metadata = metadataSources.getMetadataBuilder().build();
 
         return metadata.getSessionFactoryBuilder().build();
-    }
-
-    @Bean
-    public UserService userService(DbServiceUser dbServiceUser, UserConverter userConverter) {
-        return new UserServiceImpl(dbServiceUser, userConverter);
     }
 
     @Bean
@@ -136,8 +116,8 @@ public class WebConfig implements WebMvcConfigurer {
                 "/css/**",
                 "/js/**")
                 .addResourceLocations(
-                        "/WEB-INF/static/img/",
-                        "/WEB-INF/static/css/",
-                        "/WEB-INF/static/js/");
+                        "classpath:/WEB-INF/static/img/",
+                        "classpath:/WEB-INF/static/css/",
+                        "classpath:/WEB-INF/static/js/");
     }
 }

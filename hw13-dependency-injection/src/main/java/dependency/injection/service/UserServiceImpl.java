@@ -1,4 +1,4 @@
-package dependency.injection.services;
+package dependency.injection.service;
 
 import dependency.injection.converter.UserConverter;
 import dependency.injection.dto.UserDto;

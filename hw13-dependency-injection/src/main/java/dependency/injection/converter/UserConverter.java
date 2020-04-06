@@ -35,7 +35,10 @@ public class UserConverter {
                 .age(user.getAge())
                 .login(user.getLogin())
                 .build();
-        AddressDto addressJson = new AddressDto(user.getAddress().getStreet());
+        AddressDto addressJson = null;
+        if (user.getAddress() != null) {
+            addressJson = new AddressDto(user.getAddress().getStreet());
+        }
         userJson.setAddress(addressJson);
         for (Phone phone : user.getPhones()) {
             UserDto.PhoneJson phoneJson = new UserDto.PhoneJson(phone.getNumber());

@@ -1,3 +1,5 @@
+window.onload = loadTableFromJSON;
+
 function closeCreateUserForm() {
     document.getElementById("myForm").style.display = "none";
 }
@@ -27,7 +29,8 @@ function createUser() {
         "login": login,
         "age": age,
         "address": {"street": address},
-        "phones": [{"number": phone}]
+        "phones": [{"number": phone}],
+        "password": password
     };
     var body = JSON.stringify(myJSON);
 
@@ -39,6 +42,9 @@ function createUser() {
             console.log("user created");
             document.querySelector("[data-dismiss='modal']").click();
             loadTableFromJSON();
+        }
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 400) {
+            document.getElementById("error").innerHTML = "error";
         }
     }
 

@@ -11,7 +11,7 @@ public class UserController {
     private static final String USER_LIST_URL = "/user/list";
     private static final String USER_LIST_HTML = "usersList.html";
 
-    @GetMapping(value = {"/", USER_LIST_URL})
+    @GetMapping(path = {"/", USER_LIST_URL})
     public String getUserList() {
         return USER_LIST_HTML;
     }

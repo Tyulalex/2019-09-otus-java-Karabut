@@ -105,7 +105,6 @@ public class UserDto {
         }
 
         public UserDtoBuilder password(@NonNull String password) {
-            this.password = password;
             return this;
         }
 
