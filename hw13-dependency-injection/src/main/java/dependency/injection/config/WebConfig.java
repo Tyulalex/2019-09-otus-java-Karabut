@@ -94,11 +94,6 @@ public class WebConfig implements WebMvcConfigurer {
         return templateEngine;
     }
 
-/*    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/static/");
-    }*/
-
     @Bean
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
