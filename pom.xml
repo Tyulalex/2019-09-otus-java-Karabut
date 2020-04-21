@@ -20,6 +20,7 @@
         <module>hw10-hibernate</module>
         <module>hw11-my-cache</module>
         <module>hw12-web-server</module>
+        <module>numbers-sequence</module>
         <module>hw13-dependency-injection</module>
     </modules>
     <name>homeworks</name>
