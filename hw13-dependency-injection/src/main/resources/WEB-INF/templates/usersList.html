@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1" name="viewport">
+    <title>UsersList</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" type="text/css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script th:src="@{/js/createUser.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script type="text/javascript">
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="container">
+            <input class="btn btn-primary" onclick="loadTableFromJSON()" type="button" value="Refresh Table"/>
+            <button class="btn btn-primary" data-target="#myModal" data-toggle="modal" type="button">
+                Create User
+            </button>
+            <p id="showData"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <!-- Button to Open the Modal -->
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Create User</h4>
+                            <button class="close" data-dismiss="modal" type="button">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-popup" id="myForm">
+                                <form action="/createUser" class="form-container" method="post">
+                                    <p><label for="name">Name:</label>
+                                        <input id="name" name="name" type="text"></p>
+                                    <p><label for="age">Age: </label>
+                                        <input id="age" name="age" type="number"></p>
+                                    <p><label for="address">Address: </label>
+                                        <input id="address" name="address" type="text"></p>
+                                    <p><label for="phone">Phone: </label>
+                                        <input id="phone" name="phone" type="text"></p>
+                                    <p><label for="login">Login: </label>
+                                        <input id="login" name="login" type="text"></p>
+                                    <p><label for="typepass">Password: </label>
+                                        <input id="typepass" name="typepass" type="password"></p>
+                                    <input onclick="Toggle()" type="checkbox">
+                                    <b>Show Password</b>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
+                            <input class="btn btn-primary" onclick="createUser()" type="submit" value="Create">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
