@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import message.system.dto.MessageDto;
 import message.system.dto.UserDto;
 import message.system.frontendservice.FrontendService;
-import message.system.service.UserService;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -23,7 +22,6 @@ import java.security.Principal;
 public class UserWsController {
 
     private final Gson gson;
-    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final FrontendService frontendService;
     private final SimpMessagingTemplate simpMessagingTemplate;
@@ -38,7 +36,6 @@ public class UserWsController {
         switch (msg.getMessageType()) {
             case CREATE_USER:
                 frontendService.createUser(toUserDto(msg), data -> log.info("User is created"));
-                //userService.createUser(toUserDto(msg));
                 getUsersList(principal.getName());
             case GET_LIST_OF_USERS:
                 getUsersList(principal.getName());
