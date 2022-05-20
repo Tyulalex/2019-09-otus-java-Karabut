@@ -39,7 +39,7 @@
         <org.mockito.version>1.9.5</org.mockito.version>
         <org.slf4j.version>1.7.29</org.slf4j.version>
         <org.apache.logging.log4j.version>1.2.17</org.apache.logging.log4j.version>
-        <gson.version>2.8.6</gson.version>
+        <gson.version>2.8.9</gson.version>
         <jsonassert.version>1.5.0</jsonassert.version>
         <maven-pmd-plugin.version>3.12.0</maven-pmd-plugin.version>
         <javax.json-api.version>1.1.4</javax.json-api.version>
