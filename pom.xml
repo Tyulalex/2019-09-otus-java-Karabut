@@ -54,7 +54,7 @@
         <jetty.version>9.4.26.v20200117</jetty.version>
         <freemarker.version>2.3.28</freemarker.version>
         <apache.httpclient.version>4.5.10</apache.httpclient.version>
-        <spring.version>5.1.5.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <javax.servlet.version>4.0.1</javax.servlet.version>
         <jackson.version.core>2.10.2</jackson.version.core>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
